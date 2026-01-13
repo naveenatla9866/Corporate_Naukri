@@ -1,0 +1,69 @@
+<div class="payment-container">
+  <div class="payment-card">
+    <h2>Complete Payment</h2>
+    
+    <div class="payment-details">
+      <div class="detail-row">
+        <span class="label">Service:</span>
+        <span class="value">Job Placement & Career Support</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Amount:</span>
+        <span class="value-large">₹{{ amount }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Currency:</span>
+        <span class="value">Indian Rupees (INR)</span>
+      </div>
+    </div>
+
+    <div class="benefits-box">
+      <h4>After Payment, You Will Get:</h4>
+      <ul>
+        <li>✓ Resume Forwarded to Top Companies</li>
+        <li>✓ Interview Call Tracking</li>
+        <li>✓ Career Guidance Support</li>
+        <li>✓ Referral Bonus Opportunities</li>
+        <li>✓ Lifetime Job Access</li>
+      </ul>
+    </div>
+
+    <button class="btn-pay" (click)="openRazorpayModal()" [disabled]="!paymentInitiated">
+      Pay ₹{{ amount }} with Razorpay
+    </button>
+
+    <p class="info-text">
+      🔒 Your payment is secure and encrypted. Razorpay is India's most trusted payment gateway.
+    </p>
+
+    <p class="error" *ngIf="paymentError">{{ paymentError }}</p>
+
+    <div class="actions">
+      <button class="btn-secondary" (click)="retryPayment()" *ngIf="paymentError">
+        Retry Payment
+      </button>
+      <button class="btn-secondary" (click)="goBack()">
+        Back to Profile
+      </button>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3>Safe & Secure Payment</h3>
+    <p>
+      We use industry-leading encryption and security protocols to protect your payment information.
+      All transactions are processed through Razorpay, a PCI-DSS compliant payment gateway.
+    </p>
+    
+    <h4>Privacy & Security:</h4>
+    <ul>
+      <li>256-bit SSL encryption</li>
+      <li>PCI-DSS Level 1 certified</li>
+      <li>No storage of sensitive data</li>
+      <li>Instant payment confirmation</li>
+    </ul>
+
+    <h4>Questions?</h4>
+    <p>If you have any issues with payment, please contact our support team at support@corporatenaukri.com</p>
+  </div>
+</div>

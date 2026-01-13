@@ -1,0 +1,94 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Benefits Section -->
+    <div class="benefits-section">
+      <h2>Why Choose Us?</h2>
+      <ul class="benefits-list">
+        <li>✓ Access to exclusive job opportunities</li>
+        <li>✓ Direct connection with HR departments</li>
+        <li>✓ Fast-track interview process</li>
+        <li>✓ Career guidance and support</li>
+        <li>✓ Affordable pricing - Just ₹49</li>
+      </ul>
+    </div>
+
+    <!-- Login Form Section -->
+    <div class="login-section">
+      <h3>Sign In to Your Account</h3>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+          <small *ngIf="email?.invalid && email?.touched" class="error">
+            {{ email?.errors?.['required'] ? 'Email is required' : 'Invalid email format' }}
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          <small *ngIf="password?.invalid && password?.touched" class="error">
+            {{ password?.errors?.['required'] ? 'Password is required' : 'Minimum 6 characters' }}
+          </small>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="terms-section">
+          <label class="terms-checkbox">
+            <input
+              type="checkbox"
+              formControlName="termsAccepted"
+            />
+            <span>I accept the Terms and Conditions</span>
+          </label>
+          <button
+            type="button"
+            class="terms-link"
+            (click)="toggleTerms()"
+          >
+            View Terms
+          </button>
+          <small *ngIf="termsAccepted?.invalid && termsAccepted?.touched" class="error">
+            You must accept the terms and conditions
+          </small>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-login"
+          [disabled]="!loginForm.valid"
+        >
+          Sign In
+        </button>
+
+        <p class="error" *ngIf="loginError">{{ loginError }}</p>
+
+        <p class="signup-link">
+          Don't have an account?
+          <button type="button" class="link-btn" (click)="goToRegister()">
+            Sign Up
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Terms Bottom Sheet -->
+  <app-terms-bottom-sheet
+    *ngIf="showTerms"
+    (onClose)="closeTerms()"
+  ></app-terms-bottom-sheet>
+</div>
